@@ -8,7 +8,6 @@ A beautiful web application to track your internship applications. Keep track of
 - 📊 Track company name, role/posting, date applied, and status
 - 🔍 Filter applications by status (Applied, Interview, Offer, Rejected, Withdrawn)
 - 📈 Sankey diagram visualization of application flow
-- 🌐 Browser extension for quick-add from any webpage
 - 💾 Persistent data storage
 - 🎨 Modern, minimal UI with cream/beige color scheme
 - ⚡ Fast and lightweight
@@ -77,8 +76,6 @@ The application will automatically open in your browser at `http://localhost:300
 
 5. **View Visualization**: Click "View Visualization" to see a Sankey diagram of your application flow.
 
-6. **Browser Extension**: Install the browser extension to quickly add internships from job posting pages (see `browser-extension/README.md` for setup).
-
 ## Project Structure
 
 ```
@@ -96,12 +93,6 @@ internship-tracker/
 │   │   └── index.css
 │   ├── index.html
 │   └── vite.config.js
-├── browser-extension/           # Chrome extension for quick-add
-│   ├── manifest.json
-│   ├── popup.html
-│   ├── popup.js
-│   ├── popup.css
-│   └── content.js
 ├── package.json
 └── README.md
 ```
@@ -113,16 +104,6 @@ internship-tracker/
 - `POST /api/internships` - Create new internship
 - `PUT /api/internships/:id` - Update internship
 - `DELETE /api/internships/:id` - Delete internship
-
-## Browser Extension
-
-A Chrome extension is included that allows you to quickly add internships from any webpage. See `browser-extension/README.md` for installation and usage instructions.
-
-**Quick Setup:**
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable "Developer mode"
-3. Click "Load unpacked" and select the `browser-extension` folder
-4. Click the extension icon to quickly add internships from job posting pages
 
 ## Future Enhancements
 
