@@ -1,5 +1,7 @@
 .app {
   padding: 0;
+  width: 100%;
+  min-height: calc(100vh - 80px);
 }
 
 .app-header {
@@ -67,6 +69,30 @@
   box-shadow: 0 2px 8px rgba(44, 42, 38, 0.15);
 }
 
+.btn-add {
+  background: #fefcf9;
+  color: #2c2a26;
+  border: 1.5px solid #ddd9d3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-add:hover {
+  background: #f9f7f4;
+  border-color: #8b7355;
+  color: #2c2a26;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-add svg {
+  color: #6b5d4f;
+}
+
 .btn-secondary {
   background: #fefcf9;
   color: #5a5650;
@@ -76,6 +102,21 @@
 .btn-secondary:hover {
   background: #f9f7f4;
   border-color: #c9c5bf;
+}
+
+.nav-link {
+  color: #8b7355;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background: #f5f1e8;
+  color: #6b5d4f;
 }
 
 @media (max-width: 768px) {

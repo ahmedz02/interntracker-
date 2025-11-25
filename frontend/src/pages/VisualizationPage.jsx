@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Plot from 'react-plotly.js';
 import '../App.css';
 import './VisualizationPage.css';
@@ -7,19 +8,34 @@ import './VisualizationPage.css';
 const API_URL = '/api/internships';
 
 function VisualizationPage() {
+  const { isAuthenticated, getAuthHeaders, logout } = useAuth();
+  const navigate = useNavigate();
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/');
+      return;
+    }
     fetchInternships();
     // Refresh data every 2 seconds to catch status updates
     const interval = setInterval(fetchInternships, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isAuthenticated, navigate]);
 
   const fetchInternships = async () => {
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        headers: getAuthHeaders()
+      });
+      
+      if (response.status === 401) {
+        logout();
+        navigate('/');
+        return;
+      }
+      
       const data = await response.json();
       setInternships(data);
       setLoading(false);
