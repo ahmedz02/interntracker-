@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
 import '../App.css';
 import InternshipList from '../components/InternshipList';
 import InternshipForm from '../components/InternshipForm';
 import FilterBar from '../components/FilterBar';
-import ProfileDropdown from '../components/ProfileDropdown';
-import LoginPage from './LoginPage';
-import SignupPage from './SignupPage';
-
-const API_URL = '/api/internships';
+import { storageService } from '../services/storage';
 
 function InternshipListPage() {
-  const { isAuthenticated, getAuthHeaders } = useAuth();
-  const [showSignup, setShowSignup] = useState(false);
   const [internships, setInternships] = useState([]);
   const [filteredInternships, setFilteredInternships] = useState([]);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -21,29 +14,16 @@ function InternshipListPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchInternships();
-    } else {
-      setLoading(false);
-    }
-  }, [isAuthenticated]);
+    fetchInternships();
+  }, []);
 
   useEffect(() => {
     filterInternships();
   }, [internships, statusFilter]);
 
-  const fetchInternships = async () => {
+  const fetchInternships = () => {
     try {
-      const response = await fetch(API_URL, {
-        headers: getAuthHeaders()
-      });
-      
-      if (response.status === 401) {
-        logout();
-        return;
-      }
-      
-      const data = await response.json();
+      const data = storageService.getInternships();
       setInternships(data);
       setLoading(false);
     } catch (error) {
@@ -70,85 +50,38 @@ function InternshipListPage() {
     setShowForm(true);
   };
 
-  const handleSave = async (internshipData) => {
+  const handleSave = (internshipData) => {
     try {
-      let response;
       if (editingInternship) {
-        response = await fetch(`${API_URL}/${editingInternship.id}`, {
-          method: 'PUT',
-          headers: getAuthHeaders(),
-          body: JSON.stringify(internshipData)
-        });
+        // Update existing
+        storageService.updateInternship(editingInternship.id, internshipData);
       } else {
-        response = await fetch(API_URL, {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify(internshipData)
-        });
+        // Create new
+        storageService.addInternship(internshipData);
       }
-      
-      if (response.status === 401) {
-        logout();
-        return;
-      }
-      
-      if (response.ok) {
-        await fetchInternships();
-        setShowForm(false);
-        setEditingInternship(null);
-      } else {
-        const errorData = await response.json().catch(() => ({ error: 'Failed to save internship' }));
-        alert(`Error: ${errorData.error || 'Failed to save internship. Please try again.'}`);
-      }
+      fetchInternships();
+      setShowForm(false);
+      setEditingInternship(null);
     } catch (error) {
       console.error('Error saving internship:', error);
-      alert('Error: Unable to connect to server. Please make sure the backend is running.');
+      alert('Error: Failed to save internship. Please try again.');
     }
   };
 
-  const handleStatusUpdate = async (id, newStatus) => {
+  const handleStatusUpdate = (id, newStatus) => {
     try {
-      const internship = internships.find(i => i.id === id);
-      if (internship) {
-        const response = await fetch(`${API_URL}/${id}`, {
-          method: 'PUT',
-          headers: getAuthHeaders(),
-          body: JSON.stringify({
-            ...internship,
-            status: newStatus
-          })
-        });
-        
-        if (response.status === 401) {
-          logout();
-          return;
-        }
-        
-        if (response.ok) {
-          fetchInternships();
-        }
-      }
+      storageService.updateInternship(id, { status: newStatus });
+      fetchInternships();
     } catch (error) {
       console.error('Error updating status:', error);
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this internship?')) {
       try {
-        const response = await fetch(`${API_URL}/${id}`, {
-          method: 'DELETE',
-          headers: getAuthHeaders()
-        });
-        
-        if (response.status === 401) {
-          logout();
-          return;
-        }
-        
-        if (response.ok) {
-          fetchInternships();
-        }
+        storageService.deleteInternship(id);
+        fetchInternships();
       } catch (error) {
         console.error('Error deleting internship:', error);
       }
@@ -159,14 +92,6 @@ function InternshipListPage() {
     setShowForm(false);
     setEditingInternship(null);
   };
-
-  // Show login/signup if not authenticated
-  if (!isAuthenticated) {
-    if (showSignup) {
-      return <SignupPage onSwitchToLogin={() => setShowSignup(false)} />;
-    }
-    return <LoginPage onSwitchToSignup={() => setShowSignup(true)} />;
-  }
 
   if (loading) {
     return (
@@ -181,7 +106,6 @@ function InternshipListPage() {
       <header className="app-header">
         <div className="header-content">
           <h1>Internship Tracker</h1>
-          <ProfileDropdown />
         </div>
       </header>
 
