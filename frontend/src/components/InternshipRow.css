@@ -1,0 +1,237 @@
+.internship-row {
+  border-bottom: 1px solid #f0ede8;
+  transition: all 0.2s ease;
+  background: #fefcf9;
+}
+
+.internship-row:last-child {
+  border-bottom: none;
+}
+
+.internship-row:hover {
+  background-color: #faf8f5;
+}
+
+.internship-row td {
+  padding: 20px;
+  vertical-align: middle;
+}
+
+.company-cell {
+  font-weight: 600;
+  color: #2c2a26;
+}
+
+.company-name {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+.role-cell {
+  color: #4a4640;
+}
+
+.role-text {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.date-cell {
+  color: #6a665f;
+}
+
+.date-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.status-cell {
+  position: relative;
+}
+
+.status-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.status-button {
+  padding: 8px 14px;
+  border: none;
+  background: #f9f7f4;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #5a5650;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  min-width: 110px;
+  text-align: left;
+  position: relative;
+  padding-right: 32px;
+  line-height: 1.4;
+}
+
+.status-button::after {
+  content: '▼';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #9a968f;
+  pointer-events: none;
+}
+
+.status-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.status-button[data-status="applied"] {
+  background: #3b82f6;
+  color: white;
+}
+
+.status-button[data-status="applied"]::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-button[data-status="interview"] {
+  background: #f59e0b;
+  color: white;
+}
+
+.status-button[data-status="interview"]::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-button[data-status="offer"] {
+  background: #10b981;
+  color: white;
+}
+
+.status-button[data-status="offer"]::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-button[data-status="rejected"] {
+  background: #ef4444;
+  color: white;
+}
+
+.status-button[data-status="rejected"]::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-button[data-status="withdrawn"] {
+  background: #9ca3af;
+  color: white;
+}
+
+.status-button[data-status="withdrawn"]::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-menu {
+  position: fixed;
+  background: #fefcf9;
+  border: 1px solid #e8e4df;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.status-option {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: #fefcf9;
+  text-align: left;
+  font-size: 13px;
+  color: #5a5650;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+
+.status-option:hover {
+  background: #f9f7f4;
+}
+
+.status-option.active {
+  background: #f5f3ef;
+  font-weight: 600;
+}
+
+.status-option[data-status="applied"]:hover {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-option[data-status="interview"]:hover {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-option[data-status="offer"]:hover {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-option[data-status="rejected"]:hover {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-option[data-status="withdrawn"]:hover {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.action-btn {
+  padding: 8px;
+  border: 1px solid #ddd9d3;
+  background: #fefcf9;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 6px;
+  color: #6a665f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.action-btn:hover {
+  background: #f9f7f4;
+  border-color: #c9c5bf;
+  transform: translateY(-1px);
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.edit-btn:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #2563eb;
+}
+

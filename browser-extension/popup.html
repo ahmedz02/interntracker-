@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Add Internship</h2>
+    <form id="internshipForm">
+      <div class="form-group">
+        <label for="company">Company Name *</label>
+        <input type="text" id="company" name="company" required placeholder="e.g., Google">
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role/Posting *</label>
+        <input type="text" id="role" name="role" required placeholder="e.g., Software Engineering Intern">
+      </div>
+
+      <div class="form-group">
+        <label for="dateApplied">Date Applied *</label>
+        <input type="date" id="dateApplied" name="dateApplied" required>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status *</label>
+        <select id="status" name="status" required>
+          <option value="Applied">Applied</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Withdrawn">Withdrawn</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary">Add to Tracker</button>
+    </form>
+
+    <div id="message" class="message"></div>
+    <div class="footer">
+      <a href="http://localhost:3000" target="_blank" class="link">Open Tracker</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Internship Tracker",
+  "version": "1.0.0",
+  "description": "Quickly add internship applications to your tracker",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:3001/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
+

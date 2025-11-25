@@ -1,0 +1,66 @@
+.internship-list-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  background: #fefcf9;
+  border-radius: 12px;
+  border: 1px solid #e8e4df;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.internship-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fefcf9;
+  position: relative;
+}
+
+.internship-table thead {
+  background: #f9f7f4;
+  border-bottom: 1px solid #e8e4df;
+}
+
+.internship-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  color: #6a665f;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid #e8e4df;
+}
+
+.internship-table th.actions-column {
+  text-align: right;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9a968f;
+  background: #fefcf9;
+  border-radius: 8px;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .internship-table {
+    font-size: 13px;
+  }
+
+  .internship-table th,
+  .internship-table td {
+    padding: 10px 8px;
+  }
+
+  .action-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+    margin-right: 4px;
+  }
+}

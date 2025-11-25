@@ -1,0 +1,90 @@
+.app {
+  padding: 0;
+}
+
+.app-header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e8e4df;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.app-header h1 {
+  font-size: 32px;
+  color: #2c2a26;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.app-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 15px;
+  color: #9a968f;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: 1px solid #ddd9d3;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fefcf9;
+  color: #4a4640;
+  line-height: 1.4;
+}
+
+.btn-primary {
+  background: #2c2a26;
+  color: #fefcf9;
+  border-color: #2c2a26;
+}
+
+.btn-primary:hover {
+  background: #1a1815;
+  border-color: #1a1815;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(44, 42, 38, 0.15);
+}
+
+.btn-secondary {
+  background: #fefcf9;
+  color: #5a5650;
+  border-color: #ddd9d3;
+}
+
+.btn-secondary:hover {
+  background: #f9f7f4;
+  border-color: #c9c5bf;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 24px;
+  }
+
+  .app-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
