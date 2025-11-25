@@ -54,31 +54,34 @@ function App() {
 
   const handleSave = async (internshipData) => {
     try {
+      let response;
       if (editingInternship) {
         // Update existing
-        const response = await fetch(`${API_URL}/${editingInternship.id}`, {
+        response = await fetch(`${API_URL}/${editingInternship.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(internshipData)
         });
-        if (response.ok) {
-          fetchInternships();
-        }
       } else {
         // Create new
-        const response = await fetch(API_URL, {
+        response = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(internshipData)
         });
-        if (response.ok) {
-          fetchInternships();
-        }
       }
-      setShowForm(false);
-      setEditingInternship(null);
+      
+      if (response.ok) {
+        await fetchInternships();
+        setShowForm(false);
+        setEditingInternship(null);
+      } else {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to save internship' }));
+        alert(`Error: ${errorData.error || 'Failed to save internship. Please try again.'}`);
+      }
     } catch (error) {
       console.error('Error saving internship:', error);
+      alert('Error: Unable to connect to server. Please make sure the backend is running.');
     }
   };
 
